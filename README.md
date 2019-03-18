@@ -6,9 +6,9 @@ Great question. This tool is a user-friendly wrapper for the [youtube-dl command
 ### Installation:
 1. Ensure prerequisites are installed
     1. [ffmpeg tool](https://ffmpeg.zeranoe.com/builds/)
-        1. Add /path/to/ffprobe/bin to your PATH environment variable
+        1. Add /path/to/ffmpeg_folder/bin to your PATH environment variable
     2. [Youtube-dl tool](https://yt-dl.org/latest/youtube-dl.exe)
-        2. Move youtube-dl.exe to /path/to/ffprobe/bin
+        1. Move youtube-dl.exe to /path/to/ffmpeg_folder/bin
     3. Python 3
         1. Install [python 3](https://www.python.org/downloads/), make sure to tick the box adding it to your PATH variable!
         2. Install the python module mutagen. Open command prompt and enter the following:

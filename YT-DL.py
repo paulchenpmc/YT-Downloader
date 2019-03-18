@@ -12,11 +12,14 @@ def youtube_download(youtube_playlist_link):
     command = download_command.format(youtube_playlist_link)
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     while True:
-        output = process.stdout.readline().decode()
-        if output == '' and process.poll() is not None:
-            break
-        if output:
-            print(output.strip())
+        try:
+            output = process.stdout.readline().decode()
+            if output == '' and process.poll() is not None:
+                break
+            if output:
+                print(output.strip())
+        except:
+            continue
     process.wait()
     if process.returncode != 0:
         print('Error occurred during download, exiting...')

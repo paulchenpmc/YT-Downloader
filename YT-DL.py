@@ -1,15 +1,15 @@
 import os
 import re
+import argparse
 import subprocess
 from mutagen.easyid3 import EasyID3
 
-YOUTUBE_PLAYLIST_LINK   = 'YOUR YOUTUBE PLAYLIST LINK HERE'
-DOWNLOAD_COMMAND_FORMAT = 'youtube-dl -x --audio-format mp3 --audio-quality 0 --embed-thumbnail {}'
-brackets_remove_list    = ['audio', 'video', 'lyric', 'lyrics']
+download_command     = 'youtube-dl -x --audio-format mp3 --audio-quality 0 --embed-thumbnail {}'
+brackets_remove_list = ['audio', 'video', 'lyric', 'lyrics']
 
 # Download the youtube videos to mp3 file format using ffmpeg
-def youtube_download():
-    command = DOWNLOAD_COMMAND_FORMAT.format(YOUTUBE_PLAYLIST_LINK)
+def youtube_download(youtube_playlist_link):
+    command = download_command.format(youtube_playlist_link)
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     while True:
         output = process.stdout.readline().decode()
@@ -63,5 +63,9 @@ def fill_metadata():
         audio.save()
 
 if __name__ == "__main__":
-    youtube_download()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("playlist_link", help="The youtube playlist link to download and convert to audio.")
+    args = parser.parse_args()
+    youtube_playlist_link = args.playlist_link
+    youtube_download(youtube_playlist_link)
     fill_metadata()
